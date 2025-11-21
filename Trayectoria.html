@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Carrera | Miguel Navarrete</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Paleta "Vibrant Tech" */
+            --color-teal-light: #7DD1D4;
+            --color-teal-dark: #266669;
+            --color-red-deep: #961b15;
+            --color-coral: #f2895c;
+            
+            --bg-page: #f8fcfc;
+            --white-card: #ffffff;
+            --text-main: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            background-image: radial-gradient(var(--color-teal-light) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Card Style - Vibrant */
+        .strategy-card {
+            background: var(--white-card);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(38, 102, 105, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(38, 102, 105, 0.15);
+            border-color: var(--color-teal-light);
+        }
+
+        /* Paolini Card - Special Accent */
+        .paolini-card {
+            background: linear-gradient(135deg, var(--color-red-deep) 0%, #6b120d 100%);
+            color: white;
+        }
+
+        /* Timeline Elements */
+        .timeline-track {
+            border-left: 3px solid var(--color-teal-light);
+            margin-left: 16px;
+            padding-left: 32px;
+            padding-bottom: 56px;
+            position: relative;
+        }
+
+        .timeline-track:last-child {
+            border-left: 3px solid transparent;
+        }
+
+        .timeline-node {
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid var(--color-coral);
+            z-index: 10;
+        }
+
+        .timeline-node.filled {
+            background: var(--color-coral);
+            box-shadow: 0 0 0 4px rgba(242, 137, 92, 0.2);
+        }
+
+        /* Category Badges & Icons */
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            margin-right: 0.75rem;
+        }
+
+        .grid-item {
+            background-color: #fff;
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid #eef2f2;
+            transition: all 0.2s;
+        }
+        
+        .grid-item:hover {
+            border-color: var(--color-teal-light);
+            background-color: #f0fdfd;
+        }
+
+        /* Specific Colors for Grid Items */
+        .style-hard .icon-box { background: rgba(125, 209, 212, 0.2); color: var(--color-teal-dark); }
+        .style-hard { border-left: 4px solid var(--color-teal-light); }
+
+        .style-soft .icon-box { background: rgba(242, 137, 92, 0.2); color: #c25b30; }
+        .style-soft { border-left: 4px solid var(--color-coral); }
+
+        .style-exp .icon-box { background: rgba(38, 102, 105, 0.15); color: var(--color-teal-dark); }
+        .style-exp { border-left: 4px solid var(--color-teal-dark); }
+
+        .style-edu .icon-box { background: rgba(150, 27, 21, 0.1); color: var(--color-red-deep); }
+        .style-edu { border-left: 4px solid var(--color-red-deep); }
+        
+        /* Action Item Box */
+        .action-box {
+            background-color: white;
+            border: 2px solid var(--color-teal-light);
+            padding: 1.5rem;
+            border-radius: 16px;
+            position: relative;
+        }
+        
+        .number-badge {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--color-teal-dark);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 3px solid white;
+        }
+
+    </style>
+</head>
+<body class="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+
+    <!-- HEADER VIBRANTE -->
+    <header class="bg-white rounded-3xl p-8 md:p-12 mb-16 shadow-xl relative overflow-hidden border-b-8 border-[#266669]">
+        <!-- Decorative Circle -->
+        <div class="absolute -top-20 -right-20 w-80 h-80 bg-[#7DD1D4] rounded-full opacity-20 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-[#266669] via-[#7DD1D4] to-[#f2895c]"></div>
+        
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-end gap-6">
+            <div>
+                <span class="inline-block py-1 px-3 rounded-full bg-[#e0f7f8] text-[#266669] text-xs font-bold uppercase tracking-widest mb-4 border border-[#7DD1D4]">
+                    Plan Estratégico 2025-2030
+                </span>
+                <h1 class="text-5xl md:text-6xl font-display font-bold text-[#266669] leading-tight mb-2">
+                    Miguel Navarrete
+                </h1>
+                <p class="text-xl text-slate-600 font-medium">
+                    Ingeniería en Sistemas Biomédicos & Gestión Estratégica de Tecnología
+                </p>
+            </div>
+            
+            <div class="flex gap-4">
+                <div class="text-center bg-[#f8fcfc] p-4 rounded-2xl border border-[#eef2f2] shadow-sm">
+                    <p class="text-xs font-bold text-[#961b15] uppercase mb-1">Promedio</p>
+                    <p class="text-3xl font-display font-bold text-[#266669]">9.97</p>
+                </div>
+                <div class="text-center bg-[#f8fcfc] p-4 rounded-2xl border border-[#eef2f2] shadow-sm">
+                    <p class="text-xs font-bold text-[#961b15] uppercase mb-1">Inglés</p>
+                    <p class="text-3xl font-display font-bold text-[#266669]">C1</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN 1: MODELO DE REFERENCIA (PAOLINI) -->
+    <section class="mb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Tarjeta Paolini (Deep Red Contrast) -->
+            <div class="lg:col-span-12 paolini-card p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+                <!-- Texture -->
+                <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%); background-size: 10px 10px;"></div>
+                
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+                    <div class="md:col-span-4 border-r border-white/20 pr-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="bg-[#f2895c] p-1.5 rounded-lg text-white">
+                                <i data-lucide="compass" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-xs font-bold tracking-widest uppercase text-[#f2895c]">Referente de Inspiración</span>
+                        </div>
+                        <h2 class="text-4xl font-display font-bold mb-2 text-white">Alejandro Paolini</h2>
+                        <p class="text-white/80 text-lg font-medium">Managing Director, Siemens Healthineers</p>
+                        <div class="mt-4 inline-block bg-black/20 px-3 py-1 rounded-full text-xs text-white/90 backdrop-blur-sm">
+                            México, Centroamérica y el Caribe
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-8 pl-0 md:pl-4">
+                        <h3 class="text-xl font-display font-bold mb-4 text-[#7DD1D4]">Perfil de Liderazgo</h3>
+                        <p class="text-white/90 text-base leading-relaxed mb-8">
+                            Alejandro no es solo un administrador; es un líder que integra la complejidad tecnológica con la rentabilidad financiera. Su rol implica dirigir la estrategia de mercado para tres regiones distintas, gestionando P&L (Pérdidas y Ganancias), relaciones gubernamentales y la transición hacia la salud digital.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="bg-white/10 p-5 rounded-2xl border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <i data-lucide="pie-chart" class="w-5 h-5 text-[#7DD1D4]"></i>
+                                    <span class="text-sm font-bold uppercase text-white">Competencia Clave</span>
+                                </div>
+                                <p class="text-sm text-white/80">Visión Financiera: Gestión de EBITDA y Márgenes Operativos.</p>
+                            </div>
+                            <div class="bg-white/10 p-5 rounded-2xl border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <i data-lucide="globe" class="w-5 h-5 text-[#7DD1D4]"></i>
+                                    <span class="text-sm font-bold uppercase text-white">Alcance</span>
+                                </div>
+                                <p class="text-sm text-white/80">Estrategia Regional Multinacional y Relacionamiento Público.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: MAPA DE RUTA DETALLADO -->
+    <section>
+        <div class="flex items-center mb-12">
+            <div class="bg-[#266669] p-3 rounded-xl mr-4 shadow-lg shadow-teal-900/20">
+                <i data-lucide="map" class="w-6 h-6 text-white"></i>
+            </div>
+            <h2 class="text-3xl font-display font-bold text-[#266669]">Plan de Ejecución Profesional</h2>
+        </div>
+
+        <!-- FASE 1: ACTUALIDAD (CORTO PLAZO) -->
+        <div class="timeline-track">
+            <div class="timeline-node filled"></div>
+            
+            <div class="mb-5 flex flex-wrap items-center gap-3">
+                <span class="bg-[#7DD1D4] text-[#0f3f42] px-4 py-1.5 rounded-full text-xs font-bold uppercase shadow-sm">Corto Plazo</span>
+                <span class="text-xl font-bold text-[#266669]">Fase 1: Cierre Académico & Posicionamiento</span>
+                <span class="text-sm text-slate-500 font-semibold bg-white px-2 py-1 rounded border border-slate-200">Oct - Dic 2025</span>
+            </div>
+            
+            <div class="strategy-card p-8">
+                <div class="mb-8 border-b border-slate-100 pb-6">
+                    <p class="text-slate-700 text-lg leading-relaxed">
+                        <strong class="text-[#266669]">Objetivo:</strong> Consolidar el perfil técnico-académico y asegurar visibilidad para la primera inserción laboral. Transformar logros estudiantiles en competencias corporativas tangibles.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Hard Skills -->
+                    <div class="grid-item style-hard">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="cpu" class="w-5 h-5"></i></div>
+                            Hard Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Programación científica (MATLAB/Python).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Procesamiento de imágenes (3D Slicer).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Gestión documental y redacción técnica.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="grid-item style-soft">
+                        <div class="cat-label text-[#f2895c]">
+                            <div class="icon-box"><i data-lucide="users" class="w-5 h-5"></i></div>
+                            Soft Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Liderazgo (Gestión Sociedad de Alumnos).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Mentoría Académica (AACE).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Gestión del tiempo y organización.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experiencia -->
+                    <div class="grid-item style-exp">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="briefcase" class="w-5 h-5"></i></div>
+                            Experiencia
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Vicepresidente Sociedad de Alumnos.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Tutor Académico Facultad de Ingeniería.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Servicio Social (En curso).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cursos -->
+                    <div class="grid-item style-edu">
+                        <div class="cat-label text-[#961b15]">
+                            <div class="icon-box"><i data-lucide="book-open" class="w-5 h-5"></i></div>
+                            Formación/Cursos
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-center"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-600 mr-2"></i> <strong>ISHv2 (OPS/OMS)</strong> - Completado.</li>
+                            <li class="flex items-center"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-600 mr-2"></i> <strong>POE (Seg. Radiológica)</strong> - Completado.</li>
+                            <li class="flex items-center"><i data-lucide="circle" class="w-4 h-4 text-slate-400 mr-2"></i> Optativas: Logística Hospitalaria.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FASE 2: ESTANCIA (MEDIANO PLAZO 1) -->
+        <div class="timeline-track">
+            <div class="timeline-node"></div>
+            
+            <div class="mb-5 flex flex-wrap items-center gap-3">
+                <span class="bg-[#266669] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase shadow-sm">Mediano Plazo</span>
+                <span class="text-xl font-bold text-[#266669]">Fase 2: Inmersión Clínica (Estancia)</span>
+                <span class="text-sm text-slate-500 font-semibold bg-white px-2 py-1 rounded border border-slate-200">Ene - Jun 2026</span>
+            </div>
+            
+            <div class="strategy-card p-8">
+                <div class="mb-8 border-b border-slate-100 pb-6">
+                    <p class="text-slate-700 text-lg leading-relaxed">
+                        <strong class="text-[#266669]">Objetivo:</strong> Entender el flujo real del hospital. Pasar de la teoría a la práctica en gestión de activos dentro de una institución de alta especialidad (INC).
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid-item style-hard">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="cpu" class="w-5 h-5"></i></div>Hard Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Gestión de Activos Hospitalarios.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Evaluación de Tecnologías (Nivel Usuario).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Manejo de Inventarios y Reportes de Falla.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-soft">
+                        <div class="cat-label text-[#f2895c]">
+                            <div class="icon-box"><i data-lucide="users" class="w-5 h-5"></i></div>Soft Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Observación Clínica (Detectar necesidades).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Comunicación con Personal Médico.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Networking con proveedores externos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-exp">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="briefcase" class="w-5 h-5"></i></div>Experiencia
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Estancia Profesional (Inst. Nal. Cardiología).</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-edu">
+                        <div class="cat-label text-[#961b15]">
+                            <div class="icon-box"><i data-lucide="book-open" class="w-5 h-5"></i></div>Formación/Cursos
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> Fundamentos de DICOM/PACS (Online).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> Normativa Hospitalaria Avanzada.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FASE 3: INSERCIÓN (MEDIANO PLAZO 2) -->
+        <div class="timeline-track">
+            <div class="timeline-node"></div>
+            
+            <div class="mb-5 flex flex-wrap items-center gap-3">
+                <span class="bg-[#266669] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase shadow-sm">Mediano Plazo</span>
+                <span class="text-xl font-bold text-[#266669]">Fase 3: Inserción Laboral (Industria)</span>
+                <span class="text-sm text-slate-500 font-semibold bg-white px-2 py-1 rounded border border-slate-200">Jul 2026 - 2027</span>
+            </div>
+            
+            <div class="strategy-card p-8 border-l-8 border-l-[#f2895c]">
+                <div class="mb-8 border-b border-slate-100 pb-6">
+                    <p class="text-slate-700 text-lg leading-relaxed">
+                        <strong class="text-[#266669]">Objetivo:</strong> Ingreso como Trainee/Becario a multinacional (Siemens, GE, Medtronic). Absorción de cultura corporativa y procesos de calidad.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid-item style-hard">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="cpu" class="w-5 h-5"></i></div>Hard Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Automatización de Datos (Python para Negocios).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Uso de CRM/ERP Corporativos (Salesforce/SAP).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Inglés de Negocios (Presentaciones).</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-soft">
+                        <div class="cat-label text-[#f2895c]">
+                            <div class="icon-box"><i data-lucide="users" class="w-5 h-5"></i></div>Soft Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Adaptabilidad Corporativa.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Trabajo en equipos multidisciplinarios.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Proactividad (Generar valor inmediato).</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-exp">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="briefcase" class="w-5 h-5"></i></div>Experiencia
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Rol: Becario / Trainee.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Áreas: Cadena de Suministro, Mkt Técnico o Servicio.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-edu">
+                        <div class="cat-label text-[#961b15]">
+                            <div class="icon-box"><i data-lucide="book-open" class="w-5 h-5"></i></div>Formación/Cursos
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> Excel Avanzado para Negocios (Macros/VBA).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> Introducción a Project Management.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FASE 4: ESPECIALIZACIÓN (LARGO PLAZO 1) -->
+        <div class="timeline-track">
+            <div class="timeline-node"></div>
+            
+            <div class="mb-5 flex flex-wrap items-center gap-3">
+                <span class="bg-[#266669] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase shadow-sm">Largo Plazo</span>
+                <span class="text-xl font-bold text-[#266669]">Fase 4: Especialista de Campo</span>
+                <span class="text-sm text-slate-500 font-semibold bg-white px-2 py-1 rounded border border-slate-200">2 - 4 Años</span>
+            </div>
+            
+            <div class="strategy-card p-8">
+                <div class="mb-8 border-b border-slate-100 pb-6">
+                    <p class="text-slate-700 text-lg leading-relaxed">
+                        <strong class="text-[#266669]">Objetivo:</strong> Ganar credibilidad operativa ("Street Cred"). Resolver problemas complejos en sitio y convertirse en consultor técnico de confianza para el cliente.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid-item style-hard">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="cpu" class="w-5 h-5"></i></div>Hard Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Mantenimiento Correctivo Avanzado.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Implementación de IT en Salud (Redes/PACS).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Diagnóstico Remoto.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-soft">
+                        <div class="cat-label text-[#f2895c]">
+                            <div class="icon-box"><i data-lucide="users" class="w-5 h-5"></i></div>Soft Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Manejo de Crisis con Clientes.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Resolución de Conflictos.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Capacitación de Usuarios.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-exp">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="briefcase" class="w-5 h-5"></i></div>Experiencia
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Rol: Field Service Engineer / Clinical Specialist.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Liderazgo de Proyectos de Instalación.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-edu">
+                        <div class="cat-label text-[#961b15]">
+                            <div class="icon-box"><i data-lucide="book-open" class="w-5 h-5"></i></div>Formación/Cursos
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> ITIL 4 Foundation (Gestión Servicios TI).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> Certificaciones Técnicas de Fabricante.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FASE 5: DIRECCIÓN (LARGO PLAZO 2) -->
+        <div class="timeline-track">
+            <div class="timeline-node"></div>
+            
+            <div class="mb-5 flex flex-wrap items-center gap-3">
+                <span class="bg-[#266669] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase shadow-sm">Visión Final</span>
+                <span class="text-xl font-bold text-[#266669]">Fase 5: Alta Dirección & Estrategia</span>
+                <span class="text-sm text-slate-500 font-semibold bg-white px-2 py-1 rounded border border-slate-200">5+ Años</span>
+            </div>
+            
+            <div class="strategy-card p-8">
+                <div class="mb-8 border-b border-slate-100 pb-6">
+                    <p class="text-slate-700 text-lg leading-relaxed">
+                        <strong class="text-[#266669]">Objetivo:</strong> Transición a roles de gestión (Service Manager / Director). Integración de la visión técnica con la financiera (Modelo Paolini).
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid-item style-hard">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="cpu" class="w-5 h-5"></i></div>Hard Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Gestión Financiera (P&L, ROI, TCO).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Planificación Estratégica.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#7DD1D4] mt-2 mr-2"></span> Análisis de Mercado y Datos (BI).</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-soft">
+                        <div class="cat-label text-[#f2895c]">
+                            <div class="icon-box"><i data-lucide="users" class="w-5 h-5"></i></div>Soft Skills
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Negociación de Alto Nivel.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Liderazgo de Equipos Multidisciplinarios.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#f2895c] mt-2 mr-2"></span> Visión Global / Política.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-exp">
+                        <div class="cat-label text-[#266669]">
+                            <div class="icon-box"><i data-lucide="briefcase" class="w-5 h-5"></i></div>Experiencia
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Rol: Service Manager / Business Unit Director.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#266669] mt-2 mr-2"></span> Gestión Regional.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item style-edu">
+                        <div class="cat-label text-[#961b15]">
+                            <div class="icon-box"><i data-lucide="book-open" class="w-5 h-5"></i></div>Formación/Cursos
+                        </div>
+                        <ul class="text-sm text-slate-700 space-y-3 font-medium">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> MBA (Dirección de Empresas).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> PMP (Project Management Professional).</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-[#961b15] mt-2 mr-2"></span> Diplomado en Finanzas Corporativas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- SECCIÓN 3: ACCIONES INMEDIATAS -->
+    <section class="mt-12 mb-16">
+        <!-- Contenedor tipo tarjeta principal para unificar el diseño -->
+        <div class="strategy-card p-8 md:p-10 border-l-8 border-l-[#f2895c] shadow-xl">
+            
+            <div class="flex items-center mb-8 border-b border-slate-100 pb-6">
+                <div class="bg-[#f2895c] p-3 rounded-xl mr-4 shadow-lg shadow-orange-200">
+                    <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-display font-bold text-[#266669]">Plan de Acción Inmediata</h2>
+                    <p class="text-slate-500 text-sm font-medium">Pasos críticos para esta semana</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Acción 1 -->
+                <div class="action-box bg-[#fcfdfd] border border-[#eef2f2] hover:border-[#f2895c] transition-colors">
+                    <div class="number-badge bg-[#f2895c]">1</div>
+                    <h4 class="text-lg font-bold text-[#266669] mb-3 mt-2">Solicitud ISSSTE</h4>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Finalizar y enviar la solicitud formal para el voluntariado. Preparar carta de presentación destacando logros académicos.
+                    </p>
+                    <span class="inline-block bg-[#f2895c]/10 text-[#f2895c] text-xs font-bold px-3 py-1 rounded-full">Prioridad Alta</span>
+                </div>
+
+                <!-- Acción 2 -->
+                <div class="action-box bg-[#fcfdfd] border border-[#eef2f2] hover:border-[#7DD1D4] transition-colors">
+                    <div class="number-badge bg-[#266669]">2</div>
+                    <h4 class="text-lg font-bold text-[#266669] mb-3 mt-2">Optimización LinkedIn</h4>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Actualizar titular con palabras clave: "Biomedical Engineering | MATLAB | 3D Slicer". Subir certificado ISHv2 en sección "Licencias".
+                    </p>
+                    <span class="inline-block bg-[#7DD1D4]/20 text-[#266669] text-xs font-bold px-3 py-1 rounded-full">Visibilidad</span>
+                </div>
+
+                <!-- Acción 3 -->
+                <div class="action-box bg-[#fcfdfd] border border-[#eef2f2] hover:border-slate-400 transition-colors">
+                    <div class="number-badge bg-[#266669]">3</div>
+                    <h4 class="text-lg font-bold text-[#266669] mb-3 mt-2">Gestión Académica</h4>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Revisar temario de optativas del modulo de "Logística Hospitalaria" y buscar material introductorio para adelantar conceptos.
+                    </p>
+                    <span class="inline-block bg-slate-100 text-slate-600 text-xs font-bold px-3 py-1 rounded-full">Preparación</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 border-t border-slate-200 pt-10 pb-12 text-center bg-[#f8fcfc] rounded-t-3xl">
+        <p class="text-slate-600 font-medium text-sm">
+            Miguel Navarrete | Ingeniería en Sistemas Biomédicos & Estrategia
+        </p>
+        <p class="text-xs text-slate-400 mt-2">Plan de Desarrollo Profesional 2025</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
